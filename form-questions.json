@@ -1,0 +1,224 @@
+{
+  "formTitle": "ENIGLISH - SURVEY ON ENGLISH LEARNING NEEDS AND INTENTION TO PARTICIPATE",
+  "source": "https://docs.google.com/forms/d/e/1FAIpQLSf3qQ7JoghJHMYQ_EjAfNa2_5_lviCIJYhLyiRil_Fws6jRXg/viewform",
+  "questionCount": 21,
+  "percentageQuestionCount": 20,
+  "sections": [
+    {
+      "title": "SECTION 1 - ELIGIBILITY AND BACKGROUND",
+      "questions": [
+        {
+          "id": 2088317823,
+          "question": "Q01. Are you 18 years of age or older?",
+          "type": "multiple_choice",
+          "required": true,
+          "options": ["Yes", "No"]
+        },
+        {
+          "id": 1960227605,
+          "question": "Q02. How would you rate your current English proficiency?",
+          "type": "multiple_choice",
+          "required": true,
+          "options": ["A1", "A2", "B1", "B2", "C1 or above", "Not sure"]
+        },
+        {
+          "id": 955297372,
+          "question": "Q03. How often do you speak English outside the classroom?",
+          "type": "multiple_choice",
+          "required": true,
+          "options": [
+            "Never",
+            "Less than once a week",
+            "1-2 days per week",
+            "3 or more days per week"
+          ]
+        },
+        {
+          "id": 1256352432,
+          "question": "Q04. What is the maximum monthly VIP subscription price you would consider paying for ENIGLISH?",
+          "type": "multiple_choice",
+          "required": true,
+          "options": [
+            "I would not pay",
+            "29,000 VND",
+            "49,000 VND",
+            "59,000 VND",
+            "79,000 VND"
+          ]
+        },
+        {
+          "id": 1929026946,
+          "question": "Q05. What would be your greatest concern about joining ENIGLISH?",
+          "type": "multiple_choice",
+          "required": true,
+          "options": [
+            "Feeling nervous about speaking English",
+            "My English level may be insufficient",
+            "Lack of time",
+            "Being unfairly eliminated",
+            "Privacy and safety",
+            "Other / Mục khác"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SECTION 2 - RESEARCH QUESTIONNAIRE",
+      "description": "Please indicate how strongly you agree or disagree with each statement.",
+      "subsections": [
+        {
+          "title": "FA - Speaking Anxiety",
+          "type": "multiple_choice_grid",
+          "sharedOptions": [
+            "Strongly disagree",
+            "Disagree",
+            "Neither agree nor disagree",
+            "Agree",
+            "Strongly agree"
+          ],
+          "questions": [
+            {
+              "id": 1749851128,
+              "question": "FA1. I feel nervous when I speak English with people I do not know.",
+              "required": true
+            },
+            {
+              "id": 957668087,
+              "question": "FA2. I worry that other people will judge me when I make mistakes while speaking English.",
+              "required": true
+            },
+            {
+              "id": 1529514026,
+              "question": "FA3. I feel anxious when I have to speak English without preparing first.",
+              "required": true
+            }
+          ]
+        },
+        {
+          "title": "WTC - Willingness to Communicate",
+          "type": "multiple_choice_grid",
+          "sharedOptions": [
+            "Strongly disagree",
+            "Disagree",
+            "Neither agree nor disagree",
+            "Agree",
+            "Strongly agree"
+          ],
+          "questions": [
+            {
+              "id": 1563670305,
+              "question": "WTC1. I am willing to start a conversation in English with another learner.",
+              "required": true
+            },
+            {
+              "id": 1187523811,
+              "question": "WTC2. I am willing to ask a question in English when I do not understand someone.",
+              "required": true
+            },
+            {
+              "id": 653745592,
+              "question": "WTC3.I am willing to express my opinion in English during a group discussion.",
+              "required": true
+            }
+          ]
+        },
+        {
+          "title": "GM - Mystery Based English Practice Motivation",
+          "type": "multiple_choice_grid",
+          "sharedOptions": [
+            "Strongly disagree",
+            "Disagree",
+            "Neither agree nor disagree",
+            "Agree",
+            "Strongly agree"
+          ],
+          "questions": [
+            {
+              "id": 463761086,
+              "question": "GM1. The idea of solving a mystery would motivate me to practice English.",
+              "required": true
+            },
+            {
+              "id": 140343768,
+              "question": "GM2. Earning story clues by completing English tasks would motivate me to practice English.",
+              "required": true
+            },
+            {
+              "id": 1265007680,
+              "question": "GM3. Solving a mystery together with a team would motivate me to practice English.",
+              "required": true
+            }
+          ]
+        },
+        {
+          "title": "PU - Perceived Educational Usefulness",
+          "type": "multiple_choice_grid",
+          "sharedOptions": [
+            "Strongly disagree",
+            "Disagree",
+            "Neither agree nor disagree",
+            "Agree",
+            "Strongly agree"
+          ],
+          "questions": [
+            {
+              "id": 837063608,
+              "question": "PU1. I believe ENIGLISH would help me use English in meaningful situations.",
+              "required": true
+            },
+            {
+              "id": 1925392242,
+              "question": "PU2. I believe ENIGLISH would help me practice communicating information clearly in English.",
+              "required": true
+            },
+            {
+              "id": 508930934,
+              "question": "PU3. I believe ENIGLISH would make my English practice more useful for solving realistic tasks.",
+              "required": true
+            }
+          ]
+        },
+        {
+          "title": "BI - Intention to Participate",
+          "type": "multiple_choice_grid",
+          "sharedOptions": [
+            "Strongly disagree",
+            "Disagree",
+            "Neither agree nor disagree",
+            "Agree",
+            "Strongly agree"
+          ],
+          "questions": [
+            {
+              "id": 1533891937,
+              "question": "BI1. I intend to try ENIGLISH when it becomes available.",
+              "required": true
+            },
+            {
+              "id": 1415663042,
+              "question": "BI2. I would make time in my schedule to participate in ENIGLISH.",
+              "required": true
+            },
+            {
+              "id": 247229329,
+              "question": "BI3. I expect to participate in ENIGLISH regularly if it is accessible to me.",
+              "required": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SECTION 3 - OPTIONAL FEEDBACK",
+      "questions": [
+        {
+          "id": 1471724506,
+          "question": "Q06. What should ENIGLISH improve before its launch?",
+          "type": "paragraph_text",
+          "required": false,
+          "autoFill": false
+        }
+      ]
+    }
+  ]
+}

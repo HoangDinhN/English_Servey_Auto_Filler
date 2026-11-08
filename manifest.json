@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "ENIGLISH Form Pilot",
+  "version": "1.1.0",
+  "description": "Điền và gửi nhiều lượt khảo sát ENIGLISH ngẫu nhiên hoặc theo tỷ lệ phần trăm.",
+  "permissions": ["activeTab", "storage", "scripting"],
+  "host_permissions": [
+    "https://docs.google.com/forms/d/e/1FAIpQLSf3qQ7JoghJHMYQ_EjAfNa2_5_lviCIJYhLyiRil_Fws6jRXg/*",
+    "https://docs.google.com/forms/u/*/d/e/1FAIpQLSf3qQ7JoghJHMYQ_EjAfNa2_5_lviCIJYhLyiRil_Fws6jRXg/*"
+  ],
+  "action": {
+    "default_title": "ENIGLISH Form Pilot",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://docs.google.com/forms/d/e/1FAIpQLSf3qQ7JoghJHMYQ_EjAfNa2_5_lviCIJYhLyiRil_Fws6jRXg/*",
+        "https://docs.google.com/forms/u/*/d/e/1FAIpQLSf3qQ7JoghJHMYQ_EjAfNa2_5_lviCIJYhLyiRil_Fws6jRXg/*"
+      ],
+      "js": ["desired-distributions.js", "distribution-utils.js", "content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
