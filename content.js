@@ -145,26 +145,12 @@
     }
   }
 
-  function optionMatchesLabel(element, label) {
-    const target = comparableText(label);
-    if (!target) return false;
-    if (
-      (target.includes("other") || target.includes("muc khac")) &&
-      isOtherOption(element)
-    ) {
-      return true;
-    }
-    const candidateTexts = [
+  function optionCandidateTexts(element) {
+    return [
       element.getAttribute("data-value"),
       element.getAttribute("aria-label"),
       controlLabel(element)
-    ]
-      .filter(Boolean)
-      .map(comparableText);
-    return candidateTexts.some(
-      (candidate) =>
-        candidate === target || candidate.includes(target) || target.includes(candidate)
-    );
+    ].filter(Boolean);
   }
 
   function desiredRadioChoice(group, candidates, run) {
@@ -184,7 +170,17 @@
     );
     const desiredOption = distribution.options[schedule[runIndex]];
     if (!desiredOption) return null;
-    return candidates.find((element) => optionMatchesLabel(element, desiredOption.label)) || null;
+
+    const target = comparableText(desiredOption.label);
+    if (target.includes("other") || target.includes("muc khac")) {
+      return candidates.find(isOtherOption) || null;
+    }
+
+    const matchIndex = globalThis.RandomFormDistribution.findBestLabelIndex(
+      candidates.map(optionCandidateTexts),
+      desiredOption.label
+    );
+    return matchIndex >= 0 ? candidates[matchIndex] : null;
   }
 
   function isVisible(element) {
@@ -357,8 +353,19 @@
       }
 
       const choice = options.useDesiredPercentages
-        ? desiredRadioChoice(group, candidates, run) || randomItem(candidates)
+        ? desiredRadioChoice(group, candidates, run)
         : randomItem(candidates);
+      if (options.useDesiredPercentages && !choice) {
+        const questionText = normalizedText(
+          group.getAttribute("aria-label") ||
+            group.closest('[role="listitem"]')?.innerText ||
+            "câu hỏi không xác định"
+        ).slice(0, 140);
+        throw new Error(
+          `Không thể ánh xạ đáp án theo tỷ lệ cho: ${questionText}. ` +
+            "Quá trình đã dừng để tránh gửi dữ liệu sai."
+        );
+      }
       if (!choice) continue;
       clickControl(choice);
       filled += 1;
@@ -678,11 +685,12 @@
       showToast("Không tìm thấy nút Tiếp hoặc Gửi.", "warning");
     } catch (error) {
       console.error("Random Form Filler local run:", error);
-      showToast("Chế độ tự động gặp lỗi và đã dừng.", "warning");
+      const errorMessage = error?.message || "Chế độ tự động gặp lỗi và đã dừng.";
+      showToast(errorMessage, "warning");
       await finishActiveRun(
         run,
         "error",
-        `Quá trình dừng do lỗi sau ${run.completedRuns || 0}/${run.totalRuns || 1} form.`,
+        `Quá trình dừng sau ${run.completedRuns || 0}/${run.totalRuns || 1} form: ${errorMessage}`,
         run.completedRuns || 0
       );
     } finally {

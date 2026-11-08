@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ENIGLISH Form Pilot",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Điền và gửi nhiều lượt khảo sát ENIGLISH ngẫu nhiên hoặc theo tỷ lệ phần trăm.",
   "permissions": ["activeTab", "storage", "scripting"],
   "host_permissions": [

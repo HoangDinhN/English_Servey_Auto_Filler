@@ -3,7 +3,8 @@ import assert from "node:assert/strict";
 await import("../distribution-utils.js");
 await import("../desired-distributions.js");
 
-const { allocateCounts, buildSchedule } = globalThis.RandomFormDistribution;
+const { allocateCounts, buildSchedule, findBestLabelIndex } =
+  globalThis.RandomFormDistribution;
 
 assert.deepEqual(allocateCounts([35, 35, 30], 1), [1, 0, 0]);
 assert.deepEqual(allocateCounts([35, 35, 30], 2), [1, 1, 0]);
@@ -22,6 +23,45 @@ assert.deepEqual(
   [2, 3, 5]
 );
 assert.deepEqual(schedule, buildSchedule([20, 30, 50], 10, "stable-seed"));
+
+const likertLabels = [
+  ["Strongly disagree"],
+  ["Disagree"],
+  ["Neither agree nor disagree"],
+  ["Agree"],
+  ["Strongly agree"]
+];
+assert.equal(findBestLabelIndex(likertLabels, "Strongly disagree"), 0);
+assert.equal(findBestLabelIndex(likertLabels, "Disagree"), 1);
+assert.equal(findBestLabelIndex(likertLabels, "Neither agree nor disagree"), 2);
+assert.equal(findBestLabelIndex(likertLabels, "Agree"), 3);
+assert.equal(findBestLabelIndex(likertLabels, "Strongly agree"), 4);
+assert.equal(
+  findBestLabelIndex(
+    likertLabels.map(([label]) => [`WTC2 row, ${label}`]),
+    "Agree"
+  ),
+  3
+);
+assert.equal(findBestLabelIndex(likertLabels, "Missing option"), -1);
+
+const wtc2 = globalThis.RANDOM_FORM_DESIRED_DISTRIBUTIONS[9];
+const gridCandidateLabels = likertLabels.map(([label]) => [
+  `WTC2. I am willing to ask a question, ${label}`
+]);
+const mappedWtc2Counts = buildSchedule(
+  wtc2.options.map((option) => option.percent),
+  20,
+  "grid-regression"
+).reduce((counts, desiredOptionIndex) => {
+  const actualOptionIndex = findBestLabelIndex(
+    gridCandidateLabels,
+    wtc2.options[desiredOptionIndex].label
+  );
+  counts[actualOptionIndex] += 1;
+  return counts;
+}, [0, 0, 0, 0, 0]);
+assert.deepEqual(mappedWtc2Counts, [0, 2, 1, 12, 5]);
 
 assert.equal(globalThis.RANDOM_FORM_DESIRED_DISTRIBUTIONS.length, 20);
 assert.deepEqual(

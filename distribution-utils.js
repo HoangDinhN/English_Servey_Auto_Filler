@@ -78,8 +78,50 @@
     return schedule;
   }
 
+  function normalizedLabel(value) {
+    return String(value || "")
+      .normalize("NFC")
+      .toLocaleLowerCase("vi")
+      .normalize("NFD")
+      .replace(/\p{M}+/gu, "")
+      .replace(/[^\p{L}\p{N}]+/gu, " ")
+      .trim();
+  }
+
+  function findBestLabelIndex(rawCandidateLabels, rawTargetLabel) {
+    const target = normalizedLabel(rawTargetLabel);
+    if (!target) return -1;
+
+    const candidates = rawCandidateLabels.map((labels) =>
+      (Array.isArray(labels) ? labels : [labels])
+        .map(normalizedLabel)
+        .filter(Boolean)
+    );
+
+    const exactIndex = candidates.findIndex((labels) => labels.includes(target));
+    if (exactIndex >= 0) return exactIndex;
+
+    const wholePhrase = ` ${target} `;
+    const targetWordCount = target.split(" ").length;
+    let bestIndex = -1;
+    let smallestExtraWordCount = Number.POSITIVE_INFINITY;
+
+    candidates.forEach((labels, index) => {
+      for (const label of labels) {
+        if (!` ${label} `.includes(wholePhrase)) continue;
+        const extraWordCount = label.split(" ").length - targetWordCount;
+        if (extraWordCount < smallestExtraWordCount) {
+          bestIndex = index;
+          smallestExtraWordCount = extraWordCount;
+        }
+      }
+    });
+    return bestIndex;
+  }
+
   globalThis.RandomFormDistribution = Object.freeze({
     allocateCounts,
-    buildSchedule
+    buildSchedule,
+    findBestLabelIndex
   });
 })();
