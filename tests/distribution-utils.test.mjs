@@ -26,7 +26,7 @@ assert.deepEqual(schedule, buildSchedule([20, 30, 50], 10, "stable-seed"));
 assert.equal(globalThis.RANDOM_FORM_DESIRED_DISTRIBUTIONS.length, 20);
 assert.deepEqual(
   globalThis.RANDOM_FORM_DESIRED_DISTRIBUTIONS[0].options.map((option) => option.percent),
-  [100, 0]
+  [90, 10]
 );
 assert.deepEqual(
   globalThis.RANDOM_FORM_DESIRED_DISTRIBUTIONS[1].options.map((option) => option.percent),

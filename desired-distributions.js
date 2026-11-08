@@ -7,11 +7,11 @@ globalThis.RANDOM_FORM_DESIRED_DISTRIBUTIONS = Object.freeze([
     "options": [
       {
         "label": "Yes",
-        "percent": 100
+        "percent": 90
       },
       {
         "label": "No",
-        "percent": 0
+        "percent": 10
       }
     ]
   },
